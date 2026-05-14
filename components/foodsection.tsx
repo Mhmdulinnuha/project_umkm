@@ -1,4 +1,38 @@
+'use client'
+
+import { supabase } from '@/lib/supabase'
+import { useEffect, useState } from 'react'
 export default function FoodSection() {
+   const [products, setProducts] = useState<any[]>([])
+   const [categories, setCategories] = useState<any[]>([])
+
+  useEffect(() => {
+    getProducts()
+    getCategories()
+  }, [])
+
+  async function getProducts() {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+
+    if (error) {
+      console.log(error)
+    } else {
+      setProducts(data)
+    }
+  }
+  async function getCategories() {
+  const { data, error } = await supabase
+    .from('categories')
+    .select('*')
+
+  if (error) {
+    console.log(error)
+  } else {
+    setCategories(data)
+  }
+}
   return (
     <section className="food_section layout_padding-bottom">
   <div className="container">
@@ -9,32 +43,38 @@ export default function FoodSection() {
     </div>
 
     <ul className="filters_menu">
-      <li className="active" data-filter="*">All</li>
-      <li data-filter=".burger">Burger</li>
-      <li data-filter=".pizza">Pizza</li>
-      <li data-filter=".pasta">Pasta</li>
-      <li data-filter=".fries">Fries</li>
-    </ul>
 
+  <li className="active" data-filter="*">
+    All
+  </li>
+
+  {categories.map((category) => (
+    <li
+      key={category.id}
+      data-filter={`.${category.name.toLowerCase()}`}
+    >
+      {category.name}
+    </li>
+  ))}
+
+</ul>
     <div className="filters-content">
       <div className="row grid">
-
-        <div className="col-sm-6 col-lg-4 all pizza">
+        {products.map((item) => (
+        <div className="col-sm-6 col-lg-4 ">
           <div className="box">
             <div>
               <div className="img-box">
-                <img src="/images/f1.png" alt="" />
+                <img src={item.image} alt={item.name} />
               </div>
               <div className="detail-box">
-                <h5>
-                  Delicious Pizza
-                </h5>
+                <h5>{item.name}</h5>
                 <p>
                   Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam voluptatem repellendus sed eaque
                 </p>
                 <div className="options">
                   <h6>
-                    $20
+                    {item.cost_price}
                   </h6>
                   <a href="">
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style={{ background: "none" }} xmlSpace="preserve">
@@ -65,11 +105,12 @@ export default function FoodSection() {
             </div>
           </div>
         </div>
-
+))}
         {/* lanjutkan card lainnya tanpa perubahan */}
 
       </div>
     </div>
+    
 
     <div className="btn-box">
       <a href="">
