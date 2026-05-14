@@ -24,3 +24,47 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.navbar-toggler {
+  border-color: white !important;
+}
+
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+.hero_area {
+  position: relative;
+}
+
+.bg-box {
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.header_section {
+  position: relative;
+  z-index: 999;
+}.hero_area {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.bg-box {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.header_section {
+  position: relative;
+  z-index: 9999;
+}
+
+.custom_nav-container {
+  z-index: 9999;
+}
