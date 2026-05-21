@@ -49,24 +49,13 @@ export default function Navbar() {
                 </Link>
               </li>
 
-              <li className="nav-item">
-                <Link className="nav-link" href="/book-table">
-                  Book Table
-                </Link>
-              </li>
-
             </ul>
 
             {/* User Option */}
             <div className="user_option">
 
-              <Link href="/profile" className="user_link">
-                <i className="fa fa-user" aria-hidden="true"></i>
-              </Link>
-
-              <Link href="/cart" className="cart_link">
-                <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-              </Link>
+              
+             
 
               <form className="form-inline">
                 <button className="btn nav_search-btn" type="submit">
@@ -74,9 +63,15 @@ export default function Navbar() {
                 </button>
               </form>
 
-              <Link href="/order" className="order_online">
-                Order Online
-              </Link>
+              <a
+  href="https://wa.me/6289531721375"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="order_online"
+>
+  <i className="fab fa-whatsapp me-2" aria-hidden="true"></i>
+  
+</a>
 
             </div>
 
